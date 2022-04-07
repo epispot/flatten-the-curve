@@ -57,10 +57,10 @@
         font-family: "Mulish", sans-serif;
       }
 
-      @media only screen 
-      and (min-width : 1000px) {
+      @media only screen and (min-width: 1000px) {
         #navbar-header {
           width: calc(100vw - 300px);
+          float: right;
         }
 
         #navbar-header h1 {
@@ -76,16 +76,14 @@
           width: calc(100vw - 300px);
           margin-left: calc(300px + 5vw);
         }
+
+        #chart {
+          width: calc(100vw - 300px);
+          margin-left: calc(300px + 5vw);
+        }
       }
 
-      
-
-      #navbar-header {
-        background-color: #ee6e73;
-      }
-
-      @media only screen
-      and (max-width : 1000px) {
+      @media only screen and (max-width: 1000px) {
         #navbar-header h1 {
           font-size: 2rem !important;
         }
@@ -146,10 +144,10 @@
           /></a>
         </li>
         <ul class="collection">
-          <li class="collection-item">
+          <li class="collection-item active light-blue lighten-3">
             <a href="/index.html">Home</a>
           </li>
-          <li class="collection-item active light-blue lighten-3">
+          <li class="collection-item">
             <a href="/experiments/index.html">Experiments</a>
           </li>
         </ul>
@@ -159,14 +157,54 @@
     <!-- Main Content -->
     <div class="container" id="content">
       <div class="row">
-      <p class="col s12 l8">
-        Experiments:
-      </p>
-      <ul class="col s12 l8">
-        <li><a href="/experiments/SIR-Playground/index.html">SIR Playground</a></li>
-      </ul>
+        <div class="col s6">
+          <!-- Sliders -->
+          <div class="range-field">
+            <input
+              type="range"
+              id="Susceptible"
+              min="0"
+              max="10000"
+              value="0"
+              style="float: left"
+            />
+            <label for="Susceptible" style="float: right"
+              >Susceptible Population: <span id="svalue"></span
+            ></label>
+          </div>
+          <br>
+          <div class="range-field">
+            <input
+              type="range"
+              id="Infected"
+              min="0"
+              max="10000"
+              value="0"
+              style="float: left"
+            />
+            <label for="Infected" style="float: right"
+              >Infected Population: <span id="ivalue"></span
+            ></label>
+          </div>
+          <br>
+          <div class="range-field">
+            <input
+              type="range"
+              id="Recovered"
+              min="0"
+              max="10000"
+              value="0"
+              style="float: left"
+            />
+            <label for="Recovered" style="float: right"
+              >Recovered Population: <span id="rvalue"></span
+            ></label>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+
+    <div id="chart" class="col s1 right"></div>
 
     <footer id="footer" class="page-footer light-blue lighten-3">
       <div class="container">
@@ -235,6 +273,66 @@
         var elems = document.querySelectorAll(".sidenav");
         var instances = M.Sidenav.init(elems);
       });
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/epispot/EpiJS@3.0.0-alpha2/web/index.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+    <script>
+      function rebuild_chart () {
+        let update = {
+          width: 500
+        }
+
+        var s = document.getElementById("Susceptible").value;
+        var i = document.getElementById("Infected").value;
+        var r = document.getElementById("Recovered").value;
+        
+        let susceptible = new Idiom("S-(B*S*I/p)");
+        let infected = new Idiom("I+(B*S*I/p)-(u*I)");
+        let recovered = new Idiom("R+(u*I)");
+
+        let key = {
+        "S": Number(s),
+        "B": 3/14,
+        "I": Number(i),
+        "R": Number(r),
+        "p": Number(s)+Number(i)+Number(r),
+        "u": 1/14
+        };
+
+        console.log(key)
+
+        let sirm = new Model([[susceptible, "S"], [infected, "I"], [recovered, "R"]])
+
+        plot(sirm, 100, "chart", key)
+
+        Plotly.restyle(document.getElementById("chart"), update)
+      }
+
+      var susceptible = document.getElementById("Susceptible");
+      var svalue = document.getElementById("svalue");
+      svalue.innerHTML = susceptible.value;
+      susceptible.oninput = function () {
+        svalue.innerHTML = this.value;
+        rebuild_chart();
+      };
+
+      var infected = document.getElementById("Infected");
+      var ivalue = document.getElementById("ivalue");
+      ivalue.innerHTML = infected.value;
+      infected.oninput = function () {
+        ivalue.innerHTML = this.value;
+        rebuild_chart();
+      };
+
+      var recovered = document.getElementById("Recovered");
+      var rvalue = document.getElementById("rvalue");
+      rvalue.innerHTML = recovered.value;
+      recovered.oninput = function () {
+        rvalue.innerHTML = this.value;
+        rebuild_chart();
+      };
+
+      rebuild_chart();
     </script>
   </body>
 </html>
