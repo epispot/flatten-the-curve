@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIR Playground</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/assets/icons/safari-pinned-tab.svg"
+      color="#81d4fa"
+    />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="EpiJS Playground" />
+    <meta name="application-name" content="EpiJS Playground" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta
+      name="msapplication-config"
+      content="/assets/icons/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#81d4fa" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+    <style>
+      * {
+        font-family: "Mulish", sans-serif;
+      }
+
+      @media only screen 
+      and (min-width : 1000px) {
+        #navbar-header {
+          width: calc(100vw - 300px);
+        }
+
+        #navbar-header h1 {
+          font-size: 2rem !important;
+        }
+
+        #footer {
+          width: calc(100vw - 300px);
+          float: right;
+        }
+
+        #content {
+          width: calc(100vw - 300px);
+          margin-left: calc(300px + 5vw);
+        }
+      }
+
+      
+
+      #navbar-header {
+        background-color: #ee6e73;
+      }
+
+      @media only screen
+      and (max-width : 1000px) {
+        #navbar-header h1 {
+          font-size: 2rem !important;
+        }
+
+        #footer {
+          margin-top: 110px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    <!-- Side Navbar -->
+    <header>
+      <nav
+        id="navbar-header"
+        class="top-nav right light-blue lighten-3"
+        style="
+          border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+          box-shadow: none;
+          height: 110px;
+          display: flex;
+          align-items: center;
+        "
+      >
+        <a href="#" data-target="slide-out" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+        <div class="container">
+          <div class="nav-wrapper">
+            <div class="row">
+              <div class="col s12 m10 offset-m1 center">
+                <h1 class="header" style="color: black">Flatten The Curve</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <ul
+        id="slide-out"
+        class="sidenav sidenav-fixed hoverable left"
+        style="transform: translateX(0%)"
+      >
+        <li
+          class="logo center"
+          style="
+            margin-top: 20px;
+            height: 100px;
+            margin-bottom: 5px;
+            width: 300px;
+          "
+        >
+          <a href="/index.html" id="logo-container" class="brand-logo"
+            ><img src="/assets/icons/android-chrome-192x192.png" height="100px"
+          /></a>
+        </li>
+        <ul class="collection">
+          <li class="collection-item">
+            <a href="/index.html">Home</a>
+          </li>
+          <li class="collection-item active light-blue lighten-3">
+            <a href="/experiments/index.html">Experiments</a>
+          </li>
+        </ul>
+      </ul>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" id="content">
+      <div class="row">
+      <p class="col s12 l8">
+        Experiments:
+      </p>
+      <ul class="col s12 l8">
+        
+      </ul>
+    </div>
+    </div>
+
+    <footer id="footer" class="page-footer light-blue lighten-3">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Flatten The Curve</h5>
+            <p class="grey-text text-lighten-4">
+              A collection of experiments and simulations on epidemiology and
+              COVID-19.<br />
+              Made with
+              <a
+                class="grey-text text-lighten-4"
+                href="https://github.com/epispot/epijs"
+                >EpiJS</a
+              >
+            </p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li>
+                <a
+                  class="grey-text text-lighten-3"
+                  href="https://github.com/epispot/flatten-the-curve"
+                  ><i class="devicon-github-original"></i>&nbsp;Github</a
+                >
+              </li>
+              <li>
+                <a
+                  class="grey-text text-lighten-3"
+                  href="https://github.com/epispot"
+                  >epispot</a
+                >
+              </li>
+              <li>
+                <a
+                  class="grey-text text-lighten-3"
+                  href="https://github.com/epispot/EpiJS"
+                  >EpiJS</a
+                >
+              </li>
+              <li>
+                <a
+                  class="grey-text text-lighten-3"
+                  href="https://dev.to/epispot"
+                  >DEV</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          © 2022
+          <a href="https://github.com/epispot" class="grey-text text-lighten-3"
+            >epispot</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      M.AutoInit();
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems);
+      });
+    </script>
+  </body>
+</html>
