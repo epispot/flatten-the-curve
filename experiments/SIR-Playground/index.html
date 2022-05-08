@@ -311,7 +311,7 @@
       var susceptible = document.getElementById("Susceptible");
       var svalue = document.getElementById("svalue");
       svalue.innerHTML = susceptible.value;
-      susceptible.oninput = function () {
+      susceptible.onchange = function () {
         svalue.innerHTML = this.value;
         rebuild_chart();
       };
@@ -319,7 +319,7 @@
       var infected = document.getElementById("Infected");
       var ivalue = document.getElementById("ivalue");
       ivalue.innerHTML = infected.value;
-      infected.oninput = function () {
+      infected.onchange = function () {
         ivalue.innerHTML = this.value;
         rebuild_chart();
       };
@@ -327,7 +327,7 @@
       var recovered = document.getElementById("Recovered");
       var rvalue = document.getElementById("rvalue");
       rvalue.innerHTML = recovered.value;
-      recovered.oninput = function () {
+      recovered.onchange = function () {
         rvalue.innerHTML = this.value;
         rebuild_chart();
       };
