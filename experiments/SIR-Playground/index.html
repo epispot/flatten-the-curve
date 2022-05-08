@@ -57,6 +57,16 @@
         font-family: "Mulish", sans-serif;
       }
 
+      #page-container {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      #footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
       @media only screen and (min-width: 1000px) {
         #navbar-header {
           width: calc(100vw - 300px);
@@ -172,7 +182,7 @@
               >Susceptible Population: <span id="svalue"></span
             ></label>
           </div>
-          <br>
+          <br />
           <div class="range-field">
             <input
               type="range"
@@ -186,7 +196,7 @@
               >Infected Population: <span id="ivalue"></span
             ></label>
           </div>
-          <br>
+          <br />
           <div class="range-field">
             <input
               type="range"
@@ -277,35 +287,39 @@
     <script src="https://cdn.jsdelivr.net/gh/epispot/EpiJS@3.0.0-alpha2/web/index.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
     <script>
-      function rebuild_chart () {
+      function rebuild_chart() {
         let update = {
-          width: 500
-        }
+          width: 500,
+        };
 
         var s = document.getElementById("Susceptible").value;
         var i = document.getElementById("Infected").value;
         var r = document.getElementById("Recovered").value;
-        
+
         let susceptible = new Idiom("S-(B*S*I/p)");
         let infected = new Idiom("I+(B*S*I/p)-(u*I)");
         let recovered = new Idiom("R+(u*I)");
 
         let key = {
-        "S": Number(s),
-        "B": 3/14,
-        "I": Number(i),
-        "R": Number(r),
-        "p": Number(s)+Number(i)+Number(r),
-        "u": 1/14
+          S: Number(s),
+          B: 3 / 14,
+          I: Number(i),
+          R: Number(r),
+          p: Number(s) + Number(i) + Number(r),
+          u: 1 / 14,
         };
 
-        console.log(key)
+        console.log(key);
 
-        let sirm = new Model([[susceptible, "S"], [infected, "I"], [recovered, "R"]])
+        let sirm = new Model([
+          [susceptible, "S"],
+          [infected, "I"],
+          [recovered, "R"],
+        ]);
 
-        plot(sirm, 100, "chart", key)
+        plot(sirm, 100, "chart", key);
 
-        Plotly.restyle(document.getElementById("chart"), update)
+        Plotly.restyle(document.getElementById("chart"), update);
       }
 
       var susceptible = document.getElementById("Susceptible");

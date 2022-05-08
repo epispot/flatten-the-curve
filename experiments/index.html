@@ -57,8 +57,17 @@
         font-family: "Mulish", sans-serif;
       }
 
-      @media only screen 
-      and (min-width : 1000px) {
+      #page-container {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      #footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+      @media only screen and (min-width: 1000px) {
         #navbar-header {
           width: calc(100vw - 300px);
         }
@@ -78,14 +87,11 @@
         }
       }
 
-      
-
       #navbar-header {
         background-color: #ee6e73;
       }
 
-      @media only screen
-      and (max-width : 1000px) {
+      @media only screen and (max-width: 1000px) {
         #navbar-header h1 {
           font-size: 2rem !important;
         }
@@ -159,13 +165,13 @@
     <!-- Main Content -->
     <div class="container" id="content">
       <div class="row">
-      <p class="col s12 l8">
-        Experiments:
-      </p>
-      <ul class="col s12 l8">
-        <li><a href="/experiments/SIR-Playground/index.html">SIR Playground</a></li>
-      </ul>
-    </div>
+        <p class="col s12 l8">Experiments:</p>
+        <ul class="col s12 l8">
+          <li>
+            <a href="/experiments/SIR-Playground/index.html">SIR Playground</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <footer id="footer" class="page-footer light-blue lighten-3">

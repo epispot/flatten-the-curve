@@ -57,8 +57,18 @@
         font-family: "Mulish", sans-serif;
       }
 
-      @media only screen 
-      and (min-width : 1000px) {
+      #page-container {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      #footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      @media only screen and (min-width: 1000px) {
         #navbar-header {
           width: calc(100vw - 300px);
           float: right;
@@ -79,14 +89,9 @@
         }
       }
 
-      @media only screen
-      and (max-width : 1000px) {
+      @media only screen and (max-width: 1000px) {
         #navbar-header h1 {
           font-size: 2rem !important;
-        }
-
-        #footer {
-          margin-top: 110px;
         }
       }
     </style>
@@ -96,140 +101,155 @@
     />
   </head>
   <body>
-    <!-- Side Navbar -->
-    <header>
-      <nav
-        id="navbar-header"
-        class="top-nav right light-blue lighten-3"
-        style="
-          border-bottom: 1px solid rgba(0, 0, 0, 0.14);
-          box-shadow: none;
-          height: 110px;
-          display: flex;
-          align-items: center;
-        "
-      >
-        <a href="#" data-target="slide-out" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-        <div class="container">
-          <div class="nav-wrapper">
-            <div class="row">
-              <div class="col s12 m10 offset-m1 center">
-                <h1 class="header" style="color: black">Flatten The Curve</h1>
+    <div id="page-container">
+      <div id="content-wrap">
+        <!-- Side Navbar -->
+        <header>
+          <nav
+            id="navbar-header"
+            class="top-nav right light-blue lighten-3"
+            style="
+              border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+              box-shadow: none;
+              height: 110px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <a href="#" data-target="slide-out" class="sidenav-trigger"
+              ><i class="material-icons">menu</i></a
+            >
+            <div class="container">
+              <div class="nav-wrapper">
+                <div class="row">
+                  <div class="col s12 m10 offset-m1 center">
+                    <h1 class="header" style="color: black">
+                      Flatten The Curve
+                    </h1>
+                  </div>
+                </div>
               </div>
+            </div>
+          </nav>
+          <ul
+            id="slide-out"
+            class="sidenav sidenav-fixed hoverable left"
+            style="transform: translateX(0%)"
+          >
+            <li
+              class="logo center"
+              style="
+                margin-top: 20px;
+                height: 100px;
+                margin-bottom: 5px;
+                width: 300px;
+              "
+            >
+              <a href="/index.html" id="logo-container" class="brand-logo"
+                ><img
+                  src="/assets/icons/android-chrome-192x192.png"
+                  height="100px"
+              /></a>
+            </li>
+            <ul class="collection">
+              <li class="collection-item active light-blue lighten-3">
+                <a href="/index.html">Home</a>
+              </li>
+              <li class="collection-item">
+                <a href="/experiments/index.html">Experiments</a>
+              </li>
+            </ul>
+          </ul>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container" id="content">
+          <div class="row">
+            <p class="col s12 l8">
+              The Flatten The Curve repository and website is a collection of
+              experiments and projects related to and for epidemiology and
+              COVID-19, which contain interactive demos and simulations. The
+              repository is maintained by the
+              <a href="https://epispot.github.io/">epispot</a> organization.
+
+              <br /><br />
+
+              Check out the
+              <a href="https://github.com/epispot/flatten-the-curve"
+                >repository</a
+              >
+              for more information.
+            </p>
+          </div>
+          <div class="row">
+            <!-- Add images when simulations are created later -->
+          </div>
+        </div>
+      </div>
+
+      <footer id="footer" class="page-footer light-blue lighten-3">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Flatten The Curve</h5>
+              <p class="grey-text text-lighten-4">
+                A collection of experiments and simulations on epidemiology and
+                COVID-19.<br />
+                Made with
+                <a
+                  class="grey-text text-lighten-4"
+                  href="https://github.com/epispot/epijs"
+                  >EpiJS</a
+                >
+              </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://github.com/epispot/flatten-the-curve"
+                    ><i class="devicon-github-original"></i>&nbsp;Github</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://github.com/epispot"
+                    >epispot</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://github.com/epispot/EpiJS"
+                    >EpiJS</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="grey-text text-lighten-3"
+                    href="https://dev.to/epispot"
+                    >DEV</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </nav>
-      <ul
-        id="slide-out"
-        class="sidenav sidenav-fixed hoverable left"
-        style="transform: translateX(0%)"
-      >
-        <li
-          class="logo center"
-          style="
-            margin-top: 20px;
-            height: 100px;
-            margin-bottom: 5px;
-            width: 300px;
-          "
-        >
-          <a href="/index.html" id="logo-container" class="brand-logo"
-            ><img src="/assets/icons/android-chrome-192x192.png" height="100px"
-          /></a>
-        </li>
-        <ul class="collection">
-          <li class="collection-item active light-blue lighten-3">
-            <a href="/index.html">Home</a>
-          </li>
-          <li class="collection-item">
-            <a href="/experiments/index.html">Experiments</a>
-          </li>
-        </ul>
-      </ul>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container" id="content">
-      <div class="row">
-      <p class="col s12 l8">
-        The Flatten The Curve repository and website is a collection of 
-        experiments and projects related to and for epidemiology and COVID-19, 
-        which contain interactive demos and simulations. The repository is
-        maintained by the <a href="https://epispot.github.io/">epispot</a> organization.
-
-        <br><br>
-
-        Check out the <a href="https://github.com/epispot/flatten-the-curve">repository</a> for more information.
-      </p>
-    </div>
-    <div class="row">
-      <!-- Add images when simulations are created later -->
-    </div>
-    </div>
-
-    <footer id="footer" class="page-footer light-blue lighten-3">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Flatten The Curve</h5>
-            <p class="grey-text text-lighten-4">
-              A collection of experiments and simulations on epidemiology and
-              COVID-19.<br />
-              Made with
-              <a
-                class="grey-text text-lighten-4"
-                href="https://github.com/epispot/epijs"
-                >EpiJS</a
-              >
-            </p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li>
-                <a
-                  class="grey-text text-lighten-3"
-                  href="https://github.com/epispot/flatten-the-curve"
-                  ><i class="devicon-github-original"></i>&nbsp;Github</a
-                >
-              </li>
-              <li>
-                <a
-                  class="grey-text text-lighten-3"
-                  href="https://github.com/epispot"
-                  >epispot</a
-                >
-              </li>
-              <li>
-                <a
-                  class="grey-text text-lighten-3"
-                  href="https://github.com/epispot/EpiJS"
-                  >EpiJS</a
-                >
-              </li>
-              <li>
-                <a
-                  class="grey-text text-lighten-3"
-                  href="https://dev.to/epispot"
-                  >DEV</a
-                >
-              </li>
-            </ul>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2022
+            <a
+              href="https://github.com/epispot"
+              class="grey-text text-lighten-3"
+              >epispot</a
+            >
           </div>
         </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          © 2022
-          <a href="https://github.com/epispot" class="grey-text text-lighten-3"
-            >epispot</a
-          >
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
       M.AutoInit();
