@@ -175,7 +175,6 @@
               id="Susceptible"
               min="0"
               max="10000"
-              value="0"
               style="float: left"
             />
             <label for="Susceptible" style="float: right"
@@ -189,7 +188,6 @@
               id="Infected"
               min="0"
               max="10000"
-              value="0"
               style="float: left"
             />
             <label for="Infected" style="float: right"
@@ -203,11 +201,53 @@
               id="Recovered"
               min="0"
               max="10000"
-              value="0"
               style="float: left"
             />
             <label for="Recovered" style="float: right"
               >Recovered Population: <span id="rvalue"></span
+            ></label>
+          </div>
+        </div>
+        <div class="col s6">
+          <!-- Chart -->
+          <div class="range-field">
+            <input
+              type="range"
+              id="Days"
+              min="0"
+              max="300"
+              style="float: left"
+            />
+            <label for="Days" style="float: right"
+              >Days: <span id="dvalue"></span
+            ></label>
+          </div>
+          <br />
+          <div class="range-field">
+            <input
+              type="range"
+              id="InfectionRate"
+              min="0"
+              max="1"
+              step="0.01"
+              style="float: left"
+            />
+            <label for="InfectionRate" style="float: right"
+              >Infection Rate: <span id="irvalue"></span
+            ></label>
+          </div>
+          <br />
+          <div class="range-field">
+            <input
+              type="range"
+              id="RecoveryRate"
+              min="0"
+              max="1"
+              step="0.01"
+              style="float: left"
+            />
+            <label for="RecoveryRate" style="float: right"
+              >Recovery Rate: <span id="rrvalue"></span
             ></label>
           </div>
         </div>
@@ -287,7 +327,7 @@
     <script src="https://cdn.jsdelivr.net/gh/epispot/EpiJS@3.0.0-alpha2/web/index.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
     <script>
-      function rebuild_chart() {
+      function build_chart() {
         let update = {
           width: 500,
         };
@@ -295,6 +335,9 @@
         var s = document.getElementById("Susceptible").value;
         var i = document.getElementById("Infected").value;
         var r = document.getElementById("Recovered").value;
+        var d = document.getElementById("Days").value;
+        var ir = document.getElementById("InfectionRate").value;
+        var rr = document.getElementById("RecoveryRate").value;
 
         let susceptible = new Idiom("S-(B*S*I/p)");
         let infected = new Idiom("I+(B*S*I/p)-(u*I)");
@@ -302,11 +345,11 @@
 
         let key = {
           S: Number(s),
-          B: 3 / 14,
+          B: ir,
           I: Number(i),
           R: Number(r),
           p: Number(s) + Number(i) + Number(r),
-          u: 1 / 14,
+          u: rr,
         };
 
         console.log(key);
@@ -317,36 +360,66 @@
           [recovered, "R"],
         ]);
 
-        plot(sirm, 100, "chart", key);
+        plot(sirm, d, "chart", key);
 
         Plotly.restyle(document.getElementById("chart"), update);
       }
 
       var susceptible = document.getElementById("Susceptible");
+      susceptible.value = 10000;
       var svalue = document.getElementById("svalue");
       svalue.innerHTML = susceptible.value;
       susceptible.onchange = function () {
         svalue.innerHTML = this.value;
-        rebuild_chart();
+        build_chart();
       };
 
       var infected = document.getElementById("Infected");
+      infected.value = 1;
       var ivalue = document.getElementById("ivalue");
       ivalue.innerHTML = infected.value;
       infected.onchange = function () {
         ivalue.innerHTML = this.value;
-        rebuild_chart();
+        build_chart();
       };
 
       var recovered = document.getElementById("Recovered");
+      recovered.value = 0;
       var rvalue = document.getElementById("rvalue");
       rvalue.innerHTML = recovered.value;
       recovered.onchange = function () {
         rvalue.innerHTML = this.value;
-        rebuild_chart();
+        build_chart();
       };
 
-      rebuild_chart();
+      var days = document.getElementById("Days");
+      days.value = 100;
+      var dvalue = document.getElementById("dvalue");
+      dvalue.innerHTML = days.value;
+      days.onchange = function () {
+        dvalue.innerHTML = this.value;
+        build_chart();
+      };
+
+      var infection_rate = document.getElementById("InfectionRate");
+      infection_rate.value = 3/14;
+      var irvalue = document.getElementById("irvalue");
+      irvalue.innerHTML = infection_rate.value;
+      infection_rate.onchange = function () {
+        irvalue.innerHTML = this.value;
+        build_chart();
+      };
+
+      var recovery_rate = document.getElementById("RecoveryRate");
+      recovery_rate.value = 1/14;
+      var rrvalue = document.getElementById("rrvalue");
+      rrvalue.innerHTML = recovery_rate.value;
+      recovery_rate.onchange = function () {
+        rrvalue.innerHTML = this.value;
+        build_chart();
+      };
+
+      build_chart();
     </script>
   </body>
 </html>
